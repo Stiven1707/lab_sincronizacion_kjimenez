@@ -32,7 +32,8 @@ int *ids;
 pthread_t *t;
 // Arreglo de estados de los filosofos
 philosopher_state *state;
-
+// Cantidad de filosofos
+int n;
 /**
  * @brief Hilo de filosofo
  *
@@ -77,8 +78,7 @@ void test(int i);
 
 int main(int argc, char *argv[])
 {
-    // Cantidad de filosofos
-    int n;
+    
     // Contador para los for
     int i;
     // Validar la cantidad de argumentos de linea de comandos
@@ -165,28 +165,13 @@ void eat(int i)
     /* down(&mutex);
     up(&mutex); */
 }
-
 void put_forks(int i)
 {
     // TODO LEFT and RIGHT
     size_t LEFT;
     size_t RIGHT;
-    int n = sizeof(state) / sizeof(state[0]);
-    if (i == 0)
-    {
-        LEFT = n;
-        RIGHT = i + 1;
-    }
-    else if (i = n)
-    {
-        LEFT = i - 1;
-        RIGHT = 0;
-    }
-    else
-    {
-        LEFT = i - 1;
-        RIGHT = i + 1;
-    }
+    LEFT = (i + n - 1) % n;
+    RIGHT = (i + 1) / n;
     printf("philosopher %d is full! realsing the forks...\n", i);
     down(&mutex);
     state[i] = THINKING;
@@ -200,22 +185,9 @@ void test(int i)
     // TODO LEFT and RIGHT
     size_t LEFT;
     size_t RIGHT;
-    int n = sizeof(state) / sizeof(state[0]);
-    if (i == 0)
-    {
-        LEFT = n;
-        RIGHT = i + 1;
-    }
-    else if (i = n)
-    {
-        LEFT = i - 1;
-        RIGHT = 0;
-    }
-    else
-    {
-        LEFT = i - 1;
-        RIGHT = i + 1;
-    }
+ 
+    LEFT = (i + n - 1) % n;
+    RIGHT = (i + 1) / n;
     if (state[i] == HUNGRY && state[LEFT] != EATING && state[RIGHT] != EATING)
     {
         state[i] = EATING;

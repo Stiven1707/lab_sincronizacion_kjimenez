@@ -25,6 +25,10 @@ pthread_t t_producer;
 pthread_t t_consumer;
 // Arreglo de id de productos
 int *idprods;
+// Cantidad de elemtos maximos que se desean producir
+int n;
+// Posicion donde se debe insertar
+int pos;
 
 /**
  * @brief Hilo del productor
@@ -72,8 +76,6 @@ void consume_item();
 
 int main(int argc, char *argv[])
 {
-    // Cantidad de elemtos maximos que se desean producir
-    int n;
     n = 0;
     // Validar la cantidad de argumentos de la linea de comandos
     if (argc != 2)
@@ -91,6 +93,7 @@ int main(int argc, char *argv[])
     }
     // POST: n > 0
     // Reservar memoria para los identidicadores de productos
+    printf("%d",n * sizeof(int));
     idprods = (int *)malloc(n * sizeof(int));
 
     // Inicializar los semaforos
@@ -100,7 +103,6 @@ int main(int argc, char *argv[])
     // Inicializar el empty en N
     printf("n: %d\n",n);
     sem_init(&empty, 0, n);
-    printf("empty: %d\n",sem_getvalue(&empty,&n));
     // Inicializar el full en 0
     sem_init(&full, 0, 0);
 
@@ -116,40 +118,44 @@ int main(int argc, char *argv[])
 void *producer(void *arg)
 {
     // TODO
-    printf("Produccion %d iniciada\n", full);
+    printf("Produccion iniciada\n");
     int item;
     while (1)
     {
-        //item = produce_item();
+        item = produce_item();
         down(&empty);
         down(&mutex);
-        //printf("producto %d\n",item);
-        //insert_item(item);
+        printf("producto %d\n",item);
+        insert_item(item);
         up(&mutex);
         up(&full);
     } 
-    printf("Produccion %d terminada\n", full);
+    printf("Produccion terminada\n");
 }
 
 int produce_item()
 {
-    int i = sem_getvalue(&full, &i);
-    return i;
+    printf("Produciendo item...\n");
+    usleep(rand()%500000);
+    return rand()%n;
 }
 
 void insert_item(int item)
 {
-    // TODO
+    // TODO post
+    int i = sizeof(idprods)/sizeof(*idprods);
+    printf("%d\n",i);
 }
 
 void *consumer(void *arg)
 {
     // TODO
+    
 }
 
 void remove_item()
 {
-    // TODO
+    // TODO post-1
 }
 
 void consume_item()
