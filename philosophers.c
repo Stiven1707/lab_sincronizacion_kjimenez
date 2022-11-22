@@ -168,8 +168,8 @@ void eat(int i)
 void put_forks(int i)
 {
     // TODO LEFT and RIGHT
-    size_t LEFT;
-    size_t RIGHT;
+    int LEFT;
+    int RIGHT;
     LEFT = (i + n - 1) % n;
     RIGHT = (i + 1) / n;
     printf("philosopher %d is full! realsing the forks...\n", i);
@@ -183,8 +183,8 @@ void put_forks(int i)
 void test(int i)
 {
     // TODO LEFT and RIGHT
-    size_t LEFT;
-    size_t RIGHT;
+    int LEFT;
+    int RIGHT;
  
     LEFT = (i + n - 1) % n;
     RIGHT = (i + 1) / n;

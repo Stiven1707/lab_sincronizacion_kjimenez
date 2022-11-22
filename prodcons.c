@@ -64,19 +64,22 @@ void insert_item(int item);
  */
 void *consumer(void *arg);
 /**
- * @brief Remueve el ultimo producto ingresado
- *
+ * @brief Remueve el ultimo producto ingresado y lo retorna
+ * 
+ * @return int elemento extraido 
  */
-void remove_item();
+int remove_item();
 /**
  * @brief Muestra el item consumido
- *
+ * 
+ * @param item item consumido
  */
-void consume_item();
+void consume_item(int item);
 
 int main(int argc, char *argv[])
 {
     n = 0;
+    pos = 0;
     // Validar la cantidad de argumentos de la linea de comandos
     if (argc != 2)
     {
@@ -93,7 +96,7 @@ int main(int argc, char *argv[])
     }
     // POST: n > 0
     // Reservar memoria para los identidicadores de productos
-    printf("%d",n * sizeof(int));
+    printf("%d", n * sizeof(int));
     idprods = (int *)malloc(n * sizeof(int));
 
     // Inicializar los semaforos
@@ -101,13 +104,14 @@ int main(int argc, char *argv[])
     // Inicializar el mutex en 1
     sem_init(&mutex, 0, 1);
     // Inicializar el empty en N
-    printf("n: %d\n",n);
+    printf("n: %d\n", n);
     sem_init(&empty, 0, n);
     // Inicializar el full en 0
     sem_init(&full, 0, 0);
 
     // Crear los hilos
-    pthread_create(&t_producer, NULL, producer, NULL);
+    pthread_create(&t_producer, NULL, producer, NULL);    
+    pthread_create(&t_consumer, NULL, consumer, NULL);
     // Dar 5 s para que los hilos se ejecuten
     sleep(5);
     // Libero la memoria que asigne dinamicamente
@@ -125,40 +129,58 @@ void *producer(void *arg)
         item = produce_item();
         down(&empty);
         down(&mutex);
-        printf("producto %d\n",item);
+        printf("producto %d\n", item);
         insert_item(item);
         up(&mutex);
         up(&full);
-    } 
+    }
     printf("Produccion terminada\n");
 }
 
 int produce_item()
 {
     printf("Produciendo item...\n");
-    usleep(rand()%500000);
-    return rand()%n;
+    usleep(rand() % 500000);
+    return rand() % n;
 }
 
 void insert_item(int item)
 {
     // TODO post
-    int i = sizeof(idprods)/sizeof(*idprods);
-    printf("%d\n",i);
+    idprods[pos] = item;
+    printf("Insertando item %d en la posicion %d\n", item, pos);
+    pos = pos + 1;
 }
 
 void *consumer(void *arg)
 {
-    // TODO
-    
+    // TODO 
+    int item;
+    while (1)
+    {
+        down(&full);
+        down(&mutex);
+        item = remove_item();
+        up(&mutex);
+        up(&empty);
+        consume_item(item);
+    }
 }
 
-void remove_item()
+int remove_item()
 {
     // TODO post-1
+    int item = idprods[pos-1];
+    printf("Removiendo item %d en la posicion %d\n", idprods[pos-1], pos-1);
+    //idprods[pos-1] = NULL;
+    pos = pos - 1;
+    return item;
 }
 
-void consume_item()
+void consume_item(int item)
 {
     // TODO
+    printf("Consumiendo item %d\n",item);
+    usleep(rand() % 500000);
+
 }
