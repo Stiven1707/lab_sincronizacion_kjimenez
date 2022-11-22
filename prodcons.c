@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
     pthread_create(&t_producer, NULL, producer, NULL);    
     pthread_create(&t_consumer, NULL, consumer, NULL);
     // Dar 5 s para que los hilos se ejecuten
-    sleep(5);
+    sleep(15);
     // Libero la memoria que asigne dinamicamente
     free(idprods);
     return EXIT_SUCCESS;
@@ -121,7 +121,6 @@ int main(int argc, char *argv[])
 
 void *producer(void *arg)
 {
-    // TODO
     printf("Produccion iniciada\n");
     int item;
     while (1)
@@ -146,7 +145,6 @@ int produce_item()
 
 void insert_item(int item)
 {
-    // TODO post
     idprods[pos] = item;
     printf("Insertando item %d en la posicion %d\n", item, pos);
     pos = pos + 1;
@@ -154,7 +152,6 @@ void insert_item(int item)
 
 void *consumer(void *arg)
 {
-    // TODO 
     int item;
     while (1)
     {
@@ -169,18 +166,14 @@ void *consumer(void *arg)
 
 int remove_item()
 {
-    // TODO post-1
     int item = idprods[pos-1];
     printf("Removiendo item %d en la posicion %d\n", idprods[pos-1], pos-1);
-    //idprods[pos-1] = NULL;
     pos = pos - 1;
     return item;
 }
 
 void consume_item(int item)
 {
-    // TODO
     printf("Consumiendo item %d\n",item);
     usleep(rand() % 500000);
-
 }
