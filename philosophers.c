@@ -69,7 +69,7 @@ void eat(int i);
  */
 void put_forks(int i);
 /**
- * @brief Realiza la trancicion entre hambriento
+ * @brief Realiza la transicion entre hambriento
  * y comiendo si se puede
  *
  * @param i Posicion del filosofo en la mesa
@@ -78,7 +78,7 @@ void test(int i);
 
 int main(int argc, char *argv[])
 {
-    
+
     // Contador para los for
     int i;
     // Validar la cantidad de argumentos de linea de comandos
@@ -162,16 +162,14 @@ void think(int i)
 void eat(int i)
 {
     printf("philosopher %d is eating\n", i);
-    /* down(&mutex);
-    up(&mutex); */
 }
 void put_forks(int i)
 {
     // TODO LEFT and RIGHT
-    size_t LEFT;
-    size_t RIGHT;
+    int LEFT;
+    int RIGHT;
     LEFT = (i + n - 1) % n;
-    RIGHT = (i + 1) / n;
+    RIGHT = (i + 1) % n;
     printf("philosopher %d is full! realsing the forks...\n", i);
     down(&mutex);
     state[i] = THINKING;
@@ -183,14 +181,19 @@ void put_forks(int i)
 void test(int i)
 {
     // TODO LEFT and RIGHT
-    size_t LEFT;
-    size_t RIGHT;
- 
+    int LEFT;
+    int RIGHT;
+
     LEFT = (i + n - 1) % n;
-    RIGHT = (i + 1) / n;
+    RIGHT = (i + 1) % n;
     if (state[i] == HUNGRY && state[LEFT] != EATING && state[RIGHT] != EATING)
     {
         state[i] = EATING;
+        for (int i = 0; i < n; i++)
+        {
+            printf("[i{%d} s{%d}] ",i,state[i]);
+        }
+        printf("\n");
         up(&s[i]);
     }
 }
