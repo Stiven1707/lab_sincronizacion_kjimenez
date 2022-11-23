@@ -10,6 +10,8 @@
  */
 #include <pthread.h> //al compilar se requiere -ptheread
 #include <semaphore.h>
+#include <signal.h>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -29,6 +31,9 @@ semaphore mutex;
 semaphore empty;
 // Cuantos elementos tiene producidos
 semaphore full;
+// bloquea el hilo principal hasta recibir la señal de terminar
+semaphore terminate;
+
 // ID de hilo producer
 pthread_t t_producer;
 // ID de hilo consumer
@@ -39,6 +44,8 @@ int *idprods;
 int n;
 // Posicion donde se debe insertar
 int pos;
+// Bandera para indicar el fin del proceso
+int finished;
 
 /**
  * @brief Hilo del productor
@@ -85,11 +92,24 @@ int remove_item();
  * @param item item consumido
  */
 void consume_item(int item);
+/**
+ * @brief Manejador de las señales
+ * 
+ * @param num numero de la señal recibida
+ */
+void signal_handler(int num);
 
 int main(int argc, char *argv[])
 {
     n = 0;
     pos = 0;
+    finished = 0;
+    // Apuntadores de retorno de las funciones Productor y Consumidor respectivamente
+    void * ret_prod;
+    void * ret_cons;
+    //Estructura para el manejador de la señal
+    struct sigaction act;
+    
     // Validar la cantidad de argumentos de la linea de comandos
     if (argc != 2)
     {
@@ -105,6 +125,19 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     // POST: n > 0
+    // Limbiar la estructura del manejador
+    memset(&act, 0, sizeof(struct sigaction));
+
+    // Instalar el manejador de la señal
+    act.sa_handler = signal_handler;
+
+    // Interrupcion de teclado
+    sigaction(SIGINT, & act, NULL);
+    // Cerrar la terminal
+    sigaction(SIGHUP, & act, NULL);
+    // Apagar el computador
+    sigaction(SIGTERM, & act, NULL);
+    
     // Reservar memoria para los identidicadores de productos
     idprods = (int *)malloc(n * sizeof(int));
 
@@ -117,11 +150,19 @@ int main(int argc, char *argv[])
     // Inicializar el full en 0
     sem_init(&full, 0, 0);
 
+    sem_init(&terminate, 0, 0);
+    
+
     // Crear los hilos
     pthread_create(&t_producer, NULL, producer, NULL);    
     pthread_create(&t_consumer, NULL, consumer, NULL);
-    // Dar 5 s para que los hilos se ejecuten
-    sleep(5);
+    /* @brief El hilo principal se va a bloquear hasta que se reciba la señal*/
+    down(&terminate);
+    
+    // Esperar que los hilos terminen ret_* es donde se guarda el parametro de salida
+    pthread_join(t_producer,&ret_prod);
+    pthread_join(t_consumer,&ret_cons);
+    
     // Libero la memoria que asigne dinamicamente
     free(idprods);
     return EXIT_SUCCESS;
@@ -131,7 +172,7 @@ void *producer(void *arg)
 {
     printf("Produccion iniciada\n");
     int item;
-    while (1)
+    while (!finished)
     {
         item = produce_item();
         down(&empty);
@@ -141,6 +182,8 @@ void *producer(void *arg)
         up(&full);
     }
     printf("Produccion terminada\n");
+    //Terminacion correcta
+    return NULL;
 }
 
 int produce_item()
@@ -160,7 +203,7 @@ void insert_item(int item)
 void *consumer(void *arg)
 {
     int item;
-    while (1)
+    while (!finished)
     {
         down(&full);
         down(&mutex);
@@ -169,6 +212,8 @@ void *consumer(void *arg)
         up(&empty);
         consume_item(item);
     }
+    //Terminacion correcta
+    return NULL;
 }
 
 int remove_item()
@@ -183,4 +228,23 @@ void consume_item(int item)
 {
     printf("Consumiendo item %d\n",item);
     usleep(rand() % 500000);
+}
+void signal_handler(int num){
+    if (num == SIGINT)
+    {
+        printf("\nInterrupcion de teclado!\n");
+    }else if (num == SIGHUP)
+    {
+        printf("\nTerminal cerrada!\n");
+    }else if (num == SIGTERM)
+    {
+        printf("\nFuimonos!\n");
+    }else {
+        printf("\nSeñal %d recibida\n",num);
+    }
+    
+    // Indicar el fin del proceso
+    finished = 1;
+    // Desbloquear el hilo principal
+    up(&terminate);
 }
