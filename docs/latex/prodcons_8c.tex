@@ -1,0 +1,219 @@
+\hypertarget{prodcons_8c}{}\doxysection{prodcons.\+c File Reference}
+\label{prodcons_8c}\index{prodcons.c@{prodcons.c}}
+
+
+Implementacion del problema productor consumidor.  
+
+
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$semaphore.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for prodcons.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prodcons_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{prodcons_8c_a249d857dfa044493c7f29844b7b0baae}\label{prodcons_8c_a249d857dfa044493c7f29844b7b0baae}} 
+\#define {\bfseries down}~sem\+\_\+wait
+\item 
+\mbox{\Hypertarget{prodcons_8c_a0337592b74197133c4203f6dce657a76}\label{prodcons_8c_a0337592b74197133c4203f6dce657a76}} 
+\#define {\bfseries up}~sem\+\_\+post
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{prodcons_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}\label{prodcons_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}} 
+typedef sem\+\_\+t \mbox{\hyperlink{prodcons_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}{semaphore}}
+\begin{DoxyCompactList}\small\item\em Deficnicion del tipo semaphore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{prodcons_8c_a68abbb5576aa6621142fb65938ffa534}{producer}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Hilo del productor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{prodcons_8c_af6be62fb8af1ca164fa2861c403b8245}{produce\+\_\+item}} ()
+\begin{DoxyCompactList}\small\item\em Crea un nuevo producto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prodcons_8c_addcc1d66bd0310e8afad758d6fdcf93f}{insert\+\_\+item}} (int item)
+\begin{DoxyCompactList}\small\item\em Se encarga de tomar el producto y almacenarlo en un arreglo. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{prodcons_8c_a85949868186f64acb38b00214ff35c0c}{consumer}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Hilo del consumidor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{prodcons_8c_a2f67bacf1ff24d6928b151f465490df6}{remove\+\_\+item}} ()
+\begin{DoxyCompactList}\small\item\em Remueve el ultimo producto ingresado y lo retorna. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prodcons_8c_aeb93372cb8d89c63098b5fbe26676c45}{consume\+\_\+item}} (int item)
+\begin{DoxyCompactList}\small\item\em Muestra el item consumido. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{prodcons_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{prodcons_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+int {\bfseries main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{prodcons_8c_a953198dc69ff02868b4513ae96d5f262}\label{prodcons_8c_a953198dc69ff02868b4513ae96d5f262}} 
+\mbox{\hyperlink{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}{semaphore}} {\bfseries mutex}
+\item 
+\mbox{\Hypertarget{prodcons_8c_a33b4cf54ee36fa109026c1c071294f69}\label{prodcons_8c_a33b4cf54ee36fa109026c1c071294f69}} 
+\mbox{\hyperlink{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}{semaphore}} {\bfseries empty}
+\item 
+\mbox{\Hypertarget{prodcons_8c_a63b620d29abbd5ae7ae8e9da7330ccca}\label{prodcons_8c_a63b620d29abbd5ae7ae8e9da7330ccca}} 
+\mbox{\hyperlink{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}{semaphore}} {\bfseries full}
+\item 
+\mbox{\Hypertarget{prodcons_8c_a42326ab102f4420dda415ae5130413ab}\label{prodcons_8c_a42326ab102f4420dda415ae5130413ab}} 
+pthread\+\_\+t {\bfseries t\+\_\+producer}
+\item 
+\mbox{\Hypertarget{prodcons_8c_a3e1b5095024eee2f64048f81cb487f38}\label{prodcons_8c_a3e1b5095024eee2f64048f81cb487f38}} 
+pthread\+\_\+t {\bfseries t\+\_\+consumer}
+\item 
+\mbox{\Hypertarget{prodcons_8c_af957a4cd957b7a254c070d8b2da6134f}\label{prodcons_8c_af957a4cd957b7a254c070d8b2da6134f}} 
+int $\ast$ {\bfseries idprods}
+\item 
+\mbox{\Hypertarget{prodcons_8c_a76f11d9a0a47b94f72c2d0e77fb32240}\label{prodcons_8c_a76f11d9a0a47b94f72c2d0e77fb32240}} 
+int {\bfseries n}
+\item 
+\mbox{\Hypertarget{prodcons_8c_a1910d262855b71da353ed0d07a6c7823}\label{prodcons_8c_a1910d262855b71da353ed0d07a6c7823}} 
+int {\bfseries pos}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementacion del problema productor consumidor. 
+
+\begin{DoxyAuthor}{Author}
+Kevin Stiven Jimenez Perafan (\href{mailto:kjimenez@univirtual.edu.co}{\texttt{ kjimenez@univirtual.\+edu.\+co}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/11-\/23
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{prodcons_8c_aeb93372cb8d89c63098b5fbe26676c45}\label{prodcons_8c_aeb93372cb8d89c63098b5fbe26676c45}} 
+\index{prodcons.c@{prodcons.c}!consume\_item@{consume\_item}}
+\index{consume\_item@{consume\_item}!prodcons.c@{prodcons.c}}
+\doxysubsubsection{\texorpdfstring{consume\_item()}{consume\_item()}}
+{\footnotesize\ttfamily void consume\+\_\+item (\begin{DoxyParamCaption}\item[{int}]{item }\end{DoxyParamCaption})}
+
+
+
+Muestra el item consumido. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & item consumido \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{prodcons_8c_a85949868186f64acb38b00214ff35c0c}\label{prodcons_8c_a85949868186f64acb38b00214ff35c0c}} 
+\index{prodcons.c@{prodcons.c}!consumer@{consumer}}
+\index{consumer@{consumer}!prodcons.c@{prodcons.c}}
+\doxysubsubsection{\texorpdfstring{consumer()}{consumer()}}
+{\footnotesize\ttfamily void $\ast$ consumer (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Hilo del consumidor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+El hilo se bloquea si no hay productos que consumir, \char`\"{}full == 0\char`\"{} 
+
+El hilo se bloquea si el productor esta insertando un item 
+
+Desbloquea al productor si este se encuentra bloqueado 
+\end{DoxyNote}
+\mbox{\Hypertarget{prodcons_8c_addcc1d66bd0310e8afad758d6fdcf93f}\label{prodcons_8c_addcc1d66bd0310e8afad758d6fdcf93f}} 
+\index{prodcons.c@{prodcons.c}!insert\_item@{insert\_item}}
+\index{insert\_item@{insert\_item}!prodcons.c@{prodcons.c}}
+\doxysubsubsection{\texorpdfstring{insert\_item()}{insert\_item()}}
+{\footnotesize\ttfamily void insert\+\_\+item (\begin{DoxyParamCaption}\item[{int}]{item }\end{DoxyParamCaption})}
+
+
+
+Se encarga de tomar el producto y almacenarlo en un arreglo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & Nuevo producto \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{prodcons_8c_af6be62fb8af1ca164fa2861c403b8245}\label{prodcons_8c_af6be62fb8af1ca164fa2861c403b8245}} 
+\index{prodcons.c@{prodcons.c}!produce\_item@{produce\_item}}
+\index{produce\_item@{produce\_item}!prodcons.c@{prodcons.c}}
+\doxysubsubsection{\texorpdfstring{produce\_item()}{produce\_item()}}
+{\footnotesize\ttfamily int produce\+\_\+item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Crea un nuevo producto. 
+
+\begin{DoxyReturn}{Returns}
+int Identificador de ese producto 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{prodcons_8c_af6be62fb8af1ca164fa2861c403b8245_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{prodcons_8c_a68abbb5576aa6621142fb65938ffa534}\label{prodcons_8c_a68abbb5576aa6621142fb65938ffa534}} 
+\index{prodcons.c@{prodcons.c}!producer@{producer}}
+\index{producer@{producer}!prodcons.c@{prodcons.c}}
+\doxysubsubsection{\texorpdfstring{producer()}{producer()}}
+{\footnotesize\ttfamily void $\ast$ producer (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Hilo del productor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+El hilo se bloquea si ya produjo la cantida maxima de productos, \char`\"{}empty == 0\char`\"{} 
+
+El hilo se bloquea si el consumidor esta sacando un producto 
+
+Desbloquea al consumidor si se encuentra bloqueado 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{prodcons_8c_a68abbb5576aa6621142fb65938ffa534_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{prodcons_8c_a2f67bacf1ff24d6928b151f465490df6}\label{prodcons_8c_a2f67bacf1ff24d6928b151f465490df6}} 
+\index{prodcons.c@{prodcons.c}!remove\_item@{remove\_item}}
+\index{remove\_item@{remove\_item}!prodcons.c@{prodcons.c}}
+\doxysubsubsection{\texorpdfstring{remove\_item()}{remove\_item()}}
+{\footnotesize\ttfamily int remove\+\_\+item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Remueve el ultimo producto ingresado y lo retorna. 
+
+\begin{DoxyReturn}{Returns}
+int elemento extraido 
+\end{DoxyReturn}

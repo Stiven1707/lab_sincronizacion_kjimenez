@@ -1,3 +1,13 @@
+/**
+ * @file 
+ * @author Kevin Stiven Jimenez Perafan (kjimenez@univirtual.edu.co)
+ * @brief Implementacion del problema productor consumidor
+ * @version 0.1
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <pthread.h> //al compilar se requiere -ptheread
 #include <semaphore.h>
 #include <stdio.h>
@@ -96,7 +106,6 @@ int main(int argc, char *argv[])
     }
     // POST: n > 0
     // Reservar memoria para los identidicadores de productos
-    printf("%d", n * sizeof(int));
     idprods = (int *)malloc(n * sizeof(int));
 
     // Inicializar los semaforos
@@ -104,7 +113,6 @@ int main(int argc, char *argv[])
     // Inicializar el mutex en 1
     sem_init(&mutex, 0, 1);
     // Inicializar el empty en N
-    printf("n: %d\n", n);
     sem_init(&empty, 0, n);
     // Inicializar el full en 0
     sem_init(&full, 0, 0);
@@ -113,7 +121,7 @@ int main(int argc, char *argv[])
     pthread_create(&t_producer, NULL, producer, NULL);    
     pthread_create(&t_consumer, NULL, consumer, NULL);
     // Dar 5 s para que los hilos se ejecuten
-    sleep(15);
+    sleep(5);
     // Libero la memoria que asigne dinamicamente
     free(idprods);
     return EXIT_SUCCESS;
@@ -128,7 +136,6 @@ void *producer(void *arg)
         item = produce_item();
         down(&empty);
         down(&mutex);
-        printf("producto %d\n", item);
         insert_item(item);
         up(&mutex);
         up(&full);

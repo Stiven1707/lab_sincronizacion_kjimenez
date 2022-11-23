@@ -1,3 +1,13 @@
+/**
+ * @file 
+ * @author Kevin Stiven Jimenez Perafan (kjimenez@univirtual.edu.co)
+ * @brief Implementacion del problema filosofos
+ * @version 0.1
+ * @date 2022-11-23
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <pthread.h> //al compilar se requiere -ptheread
 #include <semaphore.h>
 #include <stdio.h>

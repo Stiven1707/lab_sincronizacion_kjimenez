@@ -1,0 +1,4 @@
+<map id="produce_item" name="produce_item">
+<area shape="rect" id="node1" title="Crea un nuevo producto." alt="" coords="132,5,243,32"/>
+<area shape="rect" id="node2" href="$prodcons_8c.html#a68abbb5576aa6621142fb65938ffa534" title="Hilo del productor." alt="" coords="5,5,84,32"/>
+</map>

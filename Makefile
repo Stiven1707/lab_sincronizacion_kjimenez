@@ -12,5 +12,9 @@ philosophers: philosophers.o
 philosophers.o: philosophers.c
 	gcc -c -o philosophers.o philosophers.c
 
+dox:
+	doxygen
+
 clean:
 	rm -f *.o prodcons philosophers
+	rm -rf docs

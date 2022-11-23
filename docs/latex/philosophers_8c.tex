@@ -1,0 +1,244 @@
+\hypertarget{philosophers_8c}{}\doxysection{philosophers.\+c File Reference}
+\label{philosophers_8c}\index{philosophers.c@{philosophers.c}}
+
+
+Implementacion del problema filosofos.  
+
+
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$semaphore.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for philosophers.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{philosophers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{philosophers_8c_a249d857dfa044493c7f29844b7b0baae}\label{philosophers_8c_a249d857dfa044493c7f29844b7b0baae}} 
+\#define {\bfseries down}~sem\+\_\+wait
+\item 
+\mbox{\Hypertarget{philosophers_8c_a0337592b74197133c4203f6dce657a76}\label{philosophers_8c_a0337592b74197133c4203f6dce657a76}} 
+\#define {\bfseries up}~sem\+\_\+post
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}\label{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}} 
+typedef sem\+\_\+t \mbox{\hyperlink{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}{semaphore}}
+\begin{DoxyCompactList}\small\item\em Deficnicion del tipo semaphore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{philosophers_8c_a5a0b367837342ef81d1e2c2bc7967336}\label{philosophers_8c_a5a0b367837342ef81d1e2c2bc7967336}} 
+enum \mbox{\hyperlink{philosophers_8c_a5a0b367837342ef81d1e2c2bc7967336}{philosopher\+\_\+state}} \{ {\bfseries THINKING}
+, {\bfseries HUNGRY}
+, {\bfseries EATING}
+ \}
+\begin{DoxyCompactList}\small\item\em diferentes estados que atraviezan los filosofos \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{philosophers_8c_a4c5728e52a74bb22b36dd49aa8bbad21}{philosopher}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Hilo de filosofo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{philosophers_8c_a0cafa48965103a44ed00800c1c608e8c}{think}} (int i)
+\begin{DoxyCompactList}\small\item\em Indica que el filosofo esta pensando. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{philosophers_8c_ae03ce482a335aabf2362815a0bf5713f}{take\+\_\+forks}} (int i)
+\begin{DoxyCompactList}\small\item\em Trata de tomar los tenedores. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{philosophers_8c_a7d74957a358bc5fb34df1bc613cff822}{eat}} (int i)
+\begin{DoxyCompactList}\small\item\em Indica que el filosofo esta comiendo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{philosophers_8c_a0f6d1d349624c5e17abad11a03ecf18c}{put\+\_\+forks}} (int i)
+\begin{DoxyCompactList}\small\item\em Indica que el filosofo dejo de comer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{philosophers_8c_a6a163226c0b843c57eca5d70c4a09173}{test}} (int i)
+\begin{DoxyCompactList}\small\item\em Realiza la transicion entre hambriento y comiendo si se puede. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{philosophers_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{philosophers_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+int {\bfseries main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{philosophers_8c_a953198dc69ff02868b4513ae96d5f262}\label{philosophers_8c_a953198dc69ff02868b4513ae96d5f262}} 
+\mbox{\hyperlink{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}{semaphore}} {\bfseries mutex}
+\item 
+\mbox{\Hypertarget{philosophers_8c_a0b39b59871289862a5e910331834d1f6}\label{philosophers_8c_a0b39b59871289862a5e910331834d1f6}} 
+\mbox{\hyperlink{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}{semaphore}} $\ast$ {\bfseries s}
+\item 
+\mbox{\Hypertarget{philosophers_8c_a6081d5fc46a8899b4beb60b0df7dd190}\label{philosophers_8c_a6081d5fc46a8899b4beb60b0df7dd190}} 
+int $\ast$ {\bfseries ids}
+\item 
+\mbox{\Hypertarget{philosophers_8c_ad49032725baf2431f7eb89bdcacae424}\label{philosophers_8c_ad49032725baf2431f7eb89bdcacae424}} 
+pthread\+\_\+t $\ast$ {\bfseries t}
+\item 
+\mbox{\Hypertarget{philosophers_8c_ab5142d6910811ac3973e7a5581dcfd04}\label{philosophers_8c_ab5142d6910811ac3973e7a5581dcfd04}} 
+\mbox{\hyperlink{philosophers_8c_a5a0b367837342ef81d1e2c2bc7967336}{philosopher\+\_\+state}} $\ast$ {\bfseries state}
+\item 
+\mbox{\Hypertarget{philosophers_8c_a76f11d9a0a47b94f72c2d0e77fb32240}\label{philosophers_8c_a76f11d9a0a47b94f72c2d0e77fb32240}} 
+int {\bfseries n}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementacion del problema filosofos. 
+
+\begin{DoxyAuthor}{Author}
+Kevin Stiven Jimenez Perafan (\href{mailto:kjimenez@univirtual.edu.co}{\texttt{ kjimenez@univirtual.\+edu.\+co}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/11-\/23
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{philosophers_8c_a7d74957a358bc5fb34df1bc613cff822}\label{philosophers_8c_a7d74957a358bc5fb34df1bc613cff822}} 
+\index{philosophers.c@{philosophers.c}!eat@{eat}}
+\index{eat@{eat}!philosophers.c@{philosophers.c}}
+\doxysubsubsection{\texorpdfstring{eat()}{eat()}}
+{\footnotesize\ttfamily void eat (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Indica que el filosofo esta comiendo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Posicion del filosofo en la mesa \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{philosophers_8c_a7d74957a358bc5fb34df1bc613cff822_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{philosophers_8c_a4c5728e52a74bb22b36dd49aa8bbad21}\label{philosophers_8c_a4c5728e52a74bb22b36dd49aa8bbad21}} 
+\index{philosophers.c@{philosophers.c}!philosopher@{philosopher}}
+\index{philosopher@{philosopher}!philosophers.c@{philosophers.c}}
+\doxysubsubsection{\texorpdfstring{philosopher()}{philosopher()}}
+{\footnotesize\ttfamily void $\ast$ philosopher (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Hilo de filosofo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & Id del filosofo (int$\ast$) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+NULL 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{philosophers_8c_a4c5728e52a74bb22b36dd49aa8bbad21_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{philosophers_8c_a0f6d1d349624c5e17abad11a03ecf18c}\label{philosophers_8c_a0f6d1d349624c5e17abad11a03ecf18c}} 
+\index{philosophers.c@{philosophers.c}!put\_forks@{put\_forks}}
+\index{put\_forks@{put\_forks}!philosophers.c@{philosophers.c}}
+\doxysubsubsection{\texorpdfstring{put\_forks()}{put\_forks()}}
+{\footnotesize\ttfamily void put\+\_\+forks (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Indica que el filosofo dejo de comer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Posicion del filosofo en la mesa \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+El filosofp desbloquea a sus vecinos si se encuentra bloqueados 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{philosophers_8c_a0f6d1d349624c5e17abad11a03ecf18c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{philosophers_8c_ae03ce482a335aabf2362815a0bf5713f}\label{philosophers_8c_ae03ce482a335aabf2362815a0bf5713f}} 
+\index{philosophers.c@{philosophers.c}!take\_forks@{take\_forks}}
+\index{take\_forks@{take\_forks}!philosophers.c@{philosophers.c}}
+\doxysubsubsection{\texorpdfstring{take\_forks()}{take\_forks()}}
+{\footnotesize\ttfamily void take\+\_\+forks (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Trata de tomar los tenedores. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Posicion del filosofo en la mesa \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+El hilo se bloquea si alguno de sus vecinos esta usando los tenedores 
+
+Si ninguno de lso vecinos esta usando los tenedores, no se bloquea 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{philosophers_8c_ae03ce482a335aabf2362815a0bf5713f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{philosophers_8c_a6a163226c0b843c57eca5d70c4a09173}\label{philosophers_8c_a6a163226c0b843c57eca5d70c4a09173}} 
+\index{philosophers.c@{philosophers.c}!test@{test}}
+\index{test@{test}!philosophers.c@{philosophers.c}}
+\doxysubsubsection{\texorpdfstring{test()}{test()}}
+{\footnotesize\ttfamily void test (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Realiza la transicion entre hambriento y comiendo si se puede. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Posicion del filosofo en la mesa \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{philosophers_8c_a0cafa48965103a44ed00800c1c608e8c}\label{philosophers_8c_a0cafa48965103a44ed00800c1c608e8c}} 
+\index{philosophers.c@{philosophers.c}!think@{think}}
+\index{think@{think}!philosophers.c@{philosophers.c}}
+\doxysubsubsection{\texorpdfstring{think()}{think()}}
+{\footnotesize\ttfamily void think (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Indica que el filosofo esta pensando. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Posicion del filosofo en la mesa \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{philosophers_8c_a0cafa48965103a44ed00800c1c608e8c_icgraph}
+\end{center}
+\end{figure}
