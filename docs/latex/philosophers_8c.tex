@@ -1,4 +1,4 @@
-\hypertarget{philosophers_8c}{}\doxysection{philosophers.\+c File Reference}
+\hypertarget{philosophers_8c}{}\doxysection{Referencia del Archivo philosophers.\+c}
 \label{philosophers_8c}\index{philosophers.c@{philosophers.c}}
 
 
@@ -10,15 +10,14 @@ Implementacion del problema filosofos.
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
-Include dependency graph for philosophers.\+c\+:
-\nopagebreak
+Dependencia gráfica adjunta para philosophers.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{philosophers_8c__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Macros}
+\doxysubsection*{defines}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{philosophers_8c_a249d857dfa044493c7f29844b7b0baae}\label{philosophers_8c_a249d857dfa044493c7f29844b7b0baae}} 
@@ -27,13 +26,13 @@ Include dependency graph for philosophers.\+c\+:
 \mbox{\Hypertarget{philosophers_8c_a0337592b74197133c4203f6dce657a76}\label{philosophers_8c_a0337592b74197133c4203f6dce657a76}} 
 \#define {\bfseries up}~sem\+\_\+post
 \end{DoxyCompactItemize}
-\doxysubsection*{Typedefs}
+\doxysubsection*{typedefs}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}\label{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}} 
 typedef sem\+\_\+t \mbox{\hyperlink{philosophers_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}{semaphore}}
 \begin{DoxyCompactList}\small\item\em Deficnicion del tipo semaphore. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+\doxysubsection*{Enumeraciones}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{philosophers_8c_a5a0b367837342ef81d1e2c2bc7967336}\label{philosophers_8c_a5a0b367837342ef81d1e2c2bc7967336}} 
@@ -42,7 +41,7 @@ enum \mbox{\hyperlink{philosophers_8c_a5a0b367837342ef81d1e2c2bc7967336}{philoso
 , {\bfseries EATING}
  \}
 \begin{DoxyCompactList}\small\item\em diferentes estados que atraviezan los filosofos \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsection*{Funciones}
 \begin{DoxyCompactItemize}
 \item 
 void $\ast$ \mbox{\hyperlink{philosophers_8c_a4c5728e52a74bb22b36dd49aa8bbad21}{philosopher}} (void $\ast$arg)
@@ -83,16 +82,16 @@ int {\bfseries n}
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsection{Descripción detallada}
 Implementacion del problema filosofos. 
 
-\begin{DoxyAuthor}{Author}
+\begin{DoxyAuthor}{Autor}
 Kevin Stiven Jimenez Perafan (\href{mailto:kjimenez@univirtual.edu.co}{\texttt{ kjimenez@univirtual.\+edu.\+co}}) 
 \end{DoxyAuthor}
-\begin{DoxyVersion}{Version}
+\begin{DoxyVersion}{Versión}
 0.\+1 
 \end{DoxyVersion}
-\begin{DoxyDate}{Date}
+\begin{DoxyDate}{Fecha}
 2022-\/11-\/23
 \end{DoxyDate}
 \begin{DoxyCopyright}{Copyright}
@@ -100,7 +99,7 @@ Copyright (c) 2022
 \end{DoxyCopyright}
 
 
-\doxysubsection{Function Documentation}
+\doxysubsection{Documentación de las funciones}
 \mbox{\Hypertarget{philosophers_8c_a7d74957a358bc5fb34df1bc613cff822}\label{philosophers_8c_a7d74957a358bc5fb34df1bc613cff822}} 
 \index{philosophers.c@{philosophers.c}!eat@{eat}}
 \index{eat@{eat}!philosophers.c@{philosophers.c}}
@@ -112,12 +111,11 @@ Copyright (c) 2022
 Indica que el filosofo esta comiendo. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parámetros}
 {\em i} & Posicion del filosofo en la mesa \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function\+:
-\nopagebreak
+Gráfico de llamadas a esta función\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -135,15 +133,14 @@ Here is the caller graph for this function\+:
 Hilo de filosofo. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parámetros}
 {\em arg} & Id del filosofo (int$\ast$) \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Devuelve}
 NULL 
 \end{DoxyReturn}
-Here is the call graph for this function\+:
-\nopagebreak
+Gráfico de llamadas para esta función\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -161,15 +158,14 @@ Here is the call graph for this function\+:
 Indica que el filosofo dejo de comer. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parámetros}
 {\em i} & Posicion del filosofo en la mesa \\
 \hline
 \end{DoxyParams}
-\begin{DoxyNote}{Note}
+\begin{DoxyNote}{Nota}
 El filosofp desbloquea a sus vecinos si se encuentra bloqueados 
 \end{DoxyNote}
-Here is the caller graph for this function\+:
-\nopagebreak
+Gráfico de llamadas a esta función\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -187,17 +183,16 @@ Here is the caller graph for this function\+:
 Trata de tomar los tenedores. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parámetros}
 {\em i} & Posicion del filosofo en la mesa \\
 \hline
 \end{DoxyParams}
-\begin{DoxyNote}{Note}
+\begin{DoxyNote}{Nota}
 El hilo se bloquea si alguno de sus vecinos esta usando los tenedores 
 
 Si ninguno de lso vecinos esta usando los tenedores, no se bloquea 
 \end{DoxyNote}
-Here is the caller graph for this function\+:
-\nopagebreak
+Gráfico de llamadas a esta función\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -215,7 +210,7 @@ Here is the caller graph for this function\+:
 Realiza la transicion entre hambriento y comiendo si se puede. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parámetros}
 {\em i} & Posicion del filosofo en la mesa \\
 \hline
 \end{DoxyParams}
@@ -230,12 +225,11 @@ Realiza la transicion entre hambriento y comiendo si se puede.
 Indica que el filosofo esta pensando. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parámetros}
 {\em i} & Posicion del filosofo en la mesa \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function\+:
-\nopagebreak
+Gráfico de llamadas a esta función\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

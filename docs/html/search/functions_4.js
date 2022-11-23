@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['remove_5fitem_26',['remove_item',['../prodcons_8c.html#a2f67bacf1ff24d6928b151f465490df6',1,'prodcons.c']]]
+  ['remove_5fitem_27',['remove_item',['../prodcons_8c.html#a2f67bacf1ff24d6928b151f465490df6',1,'prodcons.c']]]
 ];

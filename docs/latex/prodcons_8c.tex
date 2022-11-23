@@ -1,4 +1,4 @@
-\hypertarget{prodcons_8c}{}\doxysection{prodcons.\+c File Reference}
+\hypertarget{prodcons_8c}{}\doxysection{Referencia del Archivo prodcons.\+c}
 \label{prodcons_8c}\index{prodcons.c@{prodcons.c}}
 
 
@@ -10,14 +10,14 @@ Implementacion del problema productor consumidor.
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
-Include dependency graph for prodcons.\+c\+:\nopagebreak
+Dependencia gráfica adjunta para prodcons.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{prodcons_8c__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Macros}
+\doxysubsection*{defines}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{prodcons_8c_a249d857dfa044493c7f29844b7b0baae}\label{prodcons_8c_a249d857dfa044493c7f29844b7b0baae}} 
@@ -26,13 +26,13 @@ Include dependency graph for prodcons.\+c\+:\nopagebreak
 \mbox{\Hypertarget{prodcons_8c_a0337592b74197133c4203f6dce657a76}\label{prodcons_8c_a0337592b74197133c4203f6dce657a76}} 
 \#define {\bfseries up}~sem\+\_\+post
 \end{DoxyCompactItemize}
-\doxysubsection*{Typedefs}
+\doxysubsection*{typedefs}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{prodcons_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}\label{prodcons_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}} 
 typedef sem\+\_\+t \mbox{\hyperlink{prodcons_8c_ac6dd29c743e974e9c801a0eeb67e7a1b}{semaphore}}
 \begin{DoxyCompactList}\small\item\em Deficnicion del tipo semaphore. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsection*{Funciones}
 \begin{DoxyCompactItemize}
 \item 
 void $\ast$ \mbox{\hyperlink{prodcons_8c_a68abbb5576aa6621142fb65938ffa534}{producer}} (void $\ast$arg)
@@ -79,16 +79,16 @@ int {\bfseries pos}
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsection{Descripción detallada}
 Implementacion del problema productor consumidor. 
 
-\begin{DoxyAuthor}{Author}
+\begin{DoxyAuthor}{Autor}
 Kevin Stiven Jimenez Perafan (\href{mailto:kjimenez@univirtual.edu.co}{\texttt{ kjimenez@univirtual.\+edu.\+co}}) 
 \end{DoxyAuthor}
-\begin{DoxyVersion}{Version}
+\begin{DoxyVersion}{Versión}
 0.\+1 
 \end{DoxyVersion}
-\begin{DoxyDate}{Date}
+\begin{DoxyDate}{Fecha}
 2022-\/11-\/23
 \end{DoxyDate}
 \begin{DoxyCopyright}{Copyright}
@@ -96,7 +96,7 @@ Copyright (c) 2022
 \end{DoxyCopyright}
 
 
-\doxysubsection{Function Documentation}
+\doxysubsection{Documentación de las funciones}
 \mbox{\Hypertarget{prodcons_8c_aeb93372cb8d89c63098b5fbe26676c45}\label{prodcons_8c_aeb93372cb8d89c63098b5fbe26676c45}} 
 \index{prodcons.c@{prodcons.c}!consume\_item@{consume\_item}}
 \index{consume\_item@{consume\_item}!prodcons.c@{prodcons.c}}
@@ -108,7 +108,7 @@ Copyright (c) 2022
 Muestra el item consumido. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parámetros}
 {\em item} & item consumido \\
 \hline
 \end{DoxyParams}
@@ -123,14 +123,14 @@ Muestra el item consumido.
 Hilo del consumidor. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parámetros}
 {\em arg} & \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Devuelve}
 void$\ast$ 
 \end{DoxyReturn}
-\begin{DoxyNote}{Note}
+\begin{DoxyNote}{Nota}
 El hilo se bloquea si no hay productos que consumir, \char`\"{}full == 0\char`\"{} 
 
 El hilo se bloquea si el productor esta insertando un item 
@@ -148,7 +148,7 @@ Desbloquea al productor si este se encuentra bloqueado
 Se encarga de tomar el producto y almacenarlo en un arreglo. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parámetros}
 {\em item} & Nuevo producto \\
 \hline
 \end{DoxyParams}
@@ -162,10 +162,10 @@ Se encarga de tomar el producto y almacenarlo en un arreglo.
 
 Crea un nuevo producto. 
 
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Devuelve}
 int Identificador de ese producto 
 \end{DoxyReturn}
-Here is the caller graph for this function\+:\nopagebreak
+Gráfico de llamadas a esta función\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -183,21 +183,21 @@ Here is the caller graph for this function\+:\nopagebreak
 Hilo del productor. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parámetros}
 {\em arg} & \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Devuelve}
 void$\ast$ 
 \end{DoxyReturn}
-\begin{DoxyNote}{Note}
+\begin{DoxyNote}{Nota}
 El hilo se bloquea si ya produjo la cantida maxima de productos, \char`\"{}empty == 0\char`\"{} 
 
 El hilo se bloquea si el consumidor esta sacando un producto 
 
 Desbloquea al consumidor si se encuentra bloqueado 
 \end{DoxyNote}
-Here is the call graph for this function\+:\nopagebreak
+Gráfico de llamadas para esta función\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -214,6 +214,6 @@ Here is the call graph for this function\+:\nopagebreak
 
 Remueve el ultimo producto ingresado y lo retorna. 
 
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Devuelve}
 int elemento extraido 
 \end{DoxyReturn}

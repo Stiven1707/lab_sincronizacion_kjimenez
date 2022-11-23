@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['semaphore_12',['semaphore',['../philosophers_8c.html#ac6dd29c743e974e9c801a0eeb67e7a1b',1,'semaphore():&#160;philosophers.c'],['../prodcons_8c.html#ac6dd29c743e974e9c801a0eeb67e7a1b',1,'semaphore():&#160;prodcons.c']]]
+  ['remove_5fitem_12',['remove_item',['../prodcons_8c.html#a2f67bacf1ff24d6928b151f465490df6',1,'prodcons.c']]]
 ];
